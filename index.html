@@ -1,1 +1,66 @@
 
+<script>
+  const translations = {
+    hi: {
+      languageLabel: "भाषा:",
+      headline: "DirectGrow में आपका स्वागत है",
+      intro: "नेटवर्क मार्केटिंग के बारे में जानकारी और संपर्क के लिए हमसे जुड़ें।",
+      callButton: "कॉल करें",
+      whatsappButton: "WhatsApp करें",
+      contactTitle: "संपर्क जानकारी",
+      nameLabel: "नाम:",
+      phoneLabel: "मोबाइल:",
+      aboutTitle: "DirectGrow के बारे में",
+      aboutText: "प्रोडक्ट, सेवाओं और जुड़ने की प्रक्रिया की जानकारी के लिए Aijaz Ahmad से संपर्क करें।",
+      leadTitle: "जानकारी के लिए संपर्क करें",
+      leadIntro: "अपनी जानकारी भरें। आपका संदेश WhatsApp पर खुलेगा।",
+      leadNameLabel: "आपका नाम",
+      leadPhoneLabel: "मोबाइल नंबर",
+      leadMessageLabel: "आपका संदेश",
+      leadSubmit: "WhatsApp पर भेजें"
+    },
+    en: {
+      languageLabel: "Language:",
+      headline: "Welcome to DirectGrow",
+      intro: "Connect with us for information about network marketing.",
+      callButton: "Call Now",
+      whatsappButton: "WhatsApp",
+      contactTitle: "Contact Details",
+      nameLabel: "Name:",
+      phoneLabel: "Mobile:",
+      aboutTitle: "About DirectGrow",
+      aboutText: "Contact Aijaz Ahmad for information about products, services and how to join.",
+      leadTitle: "Request Information",
+      leadIntro: "Fill in your details. Your message will open in WhatsApp.",
+      leadNameLabel: "Your name",
+      leadPhoneLabel: "Mobile number",
+      leadMessageLabel: "Your message",
+      leadSubmit: "Send on WhatsApp"
+    }
+  };
+
+  document.getElementById("language").addEventListener("change", function () {
+    const lang = this.value;
+    document.documentElement.lang = lang;
+    for (const [id, text] of Object.entries(translations[lang])) {
+      document.getElementById(id).textContent = text;
+    }
+  });
+
+  document.getElementById("leadForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("leadName").value.trim();
+    const phone = document.getElementById("leadPhone").value.trim();
+    const message = document.getElementById("leadMessage").value.trim();
+
+    if (!name || !phone) return;
+
+    const text = `DirectGrow inquiry
+Name: ${name}
+Mobile: ${phone}
+Message: ${message || "-"}`;
+
+    window.location.href = "https://wa.me/918353919039?text=" + encodeURIComponent(text);
+  });
+</script>
